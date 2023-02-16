@@ -1,0 +1,26 @@
+name: build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Build PDF
+        uses: docker://jeandeaual/lilypond:stable
+        with:
+          args: lilypond -dno-point-and-click -dembed-source-code -dpaper-size=\"a4\" -o build Layer-Cake.ly
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: pdf-${{ steps.slug.outputs.sha7 }}
+          path: build
