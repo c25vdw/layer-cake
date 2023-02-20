@@ -17,7 +17,7 @@ right = \relative c'' {
   \global
   % Music follows here.
   \repeat unfold 8 {as,8 a fs g as8 a fs g}
-  \repeat unfold 8 {r1}
+  r4 r r r r r r r r1  r r r r r
   \repeat unfold 8 {r1}
   fs''1~fs1~fs2. e4 cs8. e8. cs8 a8. b8. gs8~gs2 a2
   fs8. g8. fs8 d8. e8. cs8 cs8 cs8. -"scale: D Major with a g#, down and repeat with C# & E, then go back up to a D Major?"
@@ -81,18 +81,40 @@ crazyplucking_e = \relative c, {
 
 % https://www.youtube.com/watch?v=EV24y6vSr0E
 crazyplucking_b_real = \relative c, {
-  b8. b16 a16 b16 r16 fs16 r8. fs16 a16 b16 r16 fs16 |
-  r16 fs16 r16 fs16 e8 fs8 a a16 b16 r16 a16 b8 |
+  b8. b16 a16(b16) r16 fs16 r8. fs16 a16(b16) r16 fs16 |
+  r16 fs16 r16 fs16 e8(fs8) a a16 fs16 r16 a16 b8 |
 }
 crazyplucking_e_real = \relative c, {
   e8. e16 d16 e16 r16 b16 r8. b16 d16 e16 r16 b16 |
-  r16 b16 r16 b16 a8 b8 d d16 b16 r16 a16 a8 |
+  r16 b16 r16 b16 a8 b8 d d16 b16 r16 a16 r16 a16 |
+}
+
+crazyplucking_b_simplified = \relative c, {
+  b4 a16 b16 r16 fs16 r8. fs16 a16 b16 r16 fs16 |
+  r16 fs16 r16 fs16 e8 fs8 a8. b16 r8 b8 |
+}
+crazyplucking_e_simplified = \relative c, {
+  e8. e16 d16 e16 r16 b16 r8. b16 d16 e16 r16 b16 |
+  r16 b16 r16 b16 a8 b8 d d16 b16 r16 a16 e8 |
 }
 crazypluckings_bbeb = \relative c, {
-  \crazyplucking_b_real
-  \crazyplucking_b_real
+  % b_real
+  b8. b16 a16(b16) r16 fs16 r8. fs16 a16(b16) r16 fs16 |
+  r16 fs16 r16 fs16 e8(fs8) a a16 fs16 r16 a16 b8~ |
+  
+  b8. b16 a16(b16) r16 fs16 r8. fs16 a16(b16) r16 fs16 |
+  r16 fs16 r16 fs16 e8(fs8) a a16 fs16 r16 a16 b8 |
+  
   \crazyplucking_e_real
-  \crazyplucking_b_real
+  
+  b8. b16 a16(b16) r16 fs16 r8. fs16 a16(b16) r16 fs16 |
+  r16 fs16 r16 fs16 e8(fs8) a a16 fs16 r16 a16 b8 |
+}
+
+second_verse = \relative c, {
+  e8 e'8 r8 fs,8 r8 fs'8 r8 g,8 r8 g'8 r8 a,8 r8 a'8 r4 |
+  b,4 b16 a16 r16 b16 r16 b16 d16 r16 b16 a8 r16 |
+  b4 b16 a16 r16 b16 r16 b16 d16 r16 b16 a8 r16 |
 }
 electricBass = \relative c, {
   \global
@@ -102,7 +124,20 @@ electricBass = \relative c, {
   \crazypluckings_bbeb
   \crazypluckings_bbeb
   \crazypluckings_bbeb
-  \crazypluckings_bbeb
+  
+    b8. b16 a16(b16) r16 fs16 r8. fs16 a16(b16) r16 fs16 |
+  r16 fs16 r16 fs16 e8(fs8) a a16 fs16 r16 a16 b8~ |
+  
+  b8. b16 a16(b16) r16 fs16 r8. fs16 a16(b16) r16 fs16 |
+  r16 fs16 r16 fs16 e8(fs8) a a16 fs16 r16 a16 b8 |
+  
+  \crazyplucking_e_real
+  
+  b8. b16 a16(b16) r16 fs16 r8. fs16 a16(b16) r16 fs16 |
+  r16 fs16 r16 fs16 e8(fs8) a a16 fs16 r4 |
+
+  \second_verse
+  \second_verse
 }
 % ===================================
 
@@ -137,6 +172,6 @@ electricGuitarPart = \new Staff \with {
   >>
   \layout { }
   \midi {
-    \tempo 4=120
+    \tempo 4=100
   }
 }
